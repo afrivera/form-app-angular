@@ -13,7 +13,7 @@
 
                 <div class="col-sm-9">
                     <input type="text"
-                           ngModel
+                           [ngModel]="initialForm.product"
                            name="product"
                            id="product"
                            class="form-control"
@@ -32,7 +32,7 @@
                 <label class="col-sm-3 col-form-label" for="price">Price</label>
                 <div class="col-sm-9">
                     <input type="number"
-                           ngModel
+                           [ngModel]="initialForm.price"
                            name="price"
                            id="price"
                            required
@@ -51,7 +51,7 @@
                 <label class="col-sm-3 col-form-label" for="stock">Stock</label>
                 <div class="col-sm-9">
                     <input type="number"
-                           ngModel
+                           [ngModel]="initialForm.stock"
                            name="stock"
                            customMin
                            [minim]="0"
