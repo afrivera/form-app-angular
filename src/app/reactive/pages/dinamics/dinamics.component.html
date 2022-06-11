@@ -1,1 +1,92 @@
-<p>dinamics works!</p>
+<h2>Reactive <small>Dinamics</small></h2>
+<hr>
+
+<form (ngSubmit)="save()" [formGroup]="myForm" autocomplete="off">
+    
+    <!-- Name -->
+    <div class="mb-3 row">
+        <label for="" class="col-sm-3 col-form-label">Name</label>
+        <div class="col-sm-9">
+            <input type="text" 
+                   class="form-control"
+                   formControlName="personName"
+                   placeholder="Person Name">
+            <span class="form-text text-danger"
+                  *ngIf="invalidField()">
+                this field is required
+            </span>
+        </div>
+    </div>
+
+    <!-- add Favorite -->
+    <div class="mb-3 row">
+        <label for="" class="col-sm-3 col-form-label">Add</label>
+        <div class="col-sm-9">
+            <div class="input-group">
+                <input class="form-control"
+                       placeholder="Add Favorite Game"
+                       [formControl]="newFavorite"
+                       (keyup.enter)="addFavorite()">
+                <button class="btn btn-outline-primary"
+                        type="button"
+                        (click)="addFavorite()">
+                    Add
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- favorite games list -->
+    <div class="mb-3 row">
+        <label for="" class="col-sm-3 col-form-label">Favorites</label>
+
+        <div class="col-sm-9" formArrayName="favorites">
+            <div class="input-group mb-1" 
+                 *ngFor="let favorite of favoritesArr.controls; let i = index">
+
+                <input type="text" 
+                       class="form-control"
+                       [formControlName]="i">
+
+                <button class="btn btn-outline-danger"
+                        type="button"
+                        (click)="deleteFavorite( i )">
+                    Delete
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <button class="btn btn-primary float-end"
+                    type="button"
+                    (click)="save()">
+                Save
+            </button>
+        </div>
+    </div>
+</form>
+
+
+<div class="row">
+    <div class="col">
+
+        <span>Valid</span>
+        <pre> {{ myForm.valid }} </pre>
+
+        <span>add Game</span>
+        <pre> {{ newFavorite.valid }} </pre>
+        <pre> {{ newFavorite.value }} </pre>
+
+        <span>Pristine</span>
+        <pre> {{ myForm.pristine }} </pre>
+
+        <span>Touched</span>
+        <pre> {{ myForm.touched }} </pre>
+        
+        <span>Value</span>
+        <pre> {{ myForm.value | json }} </pre>
+        
+    </div>
+</div>
