@@ -31,6 +31,19 @@ export class SidemenuComponent  {
       text: 'Switchs',
       route: 'switchs'
     },
+  ];
+
+  authMenu: MenutItem[] = [
+    {
+      text: 'Register',
+      route: 'register'
+    },
+    {
+      text: 'Login',
+      route: 'login'
+    }
   ]
+
+
 
 }
