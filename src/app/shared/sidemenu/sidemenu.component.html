@@ -10,7 +10,7 @@
     </li>
 </ul>
 
-<h2 class="mt-5">Template</h2>
+<h2 class="mt-3">Template</h2>
 <hr>
 
 <ul class="list-group">
@@ -22,13 +22,13 @@
     </li>
 </ul>
 
-<h2 class="mt-5">Validations</h2>
+<h2 class="mt-3">Validations</h2>
 <hr>
 
 <ul class="list-group">
     <li *ngFor="let template of authMenu"
         class="list-group-item mt-1"
-        [routerLink]="[ 'validations', template.route ]"
+        [routerLink]="[ 'auth', template.route ]"
         routerLinkActive="active">
         {{ template.text }}
     </li>
