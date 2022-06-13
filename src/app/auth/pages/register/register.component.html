@@ -29,9 +29,21 @@
                            formControlName="email"
                            placeholder="email user">
                     <span class="form-text text-danger"
-                          *ngIf="invalidField( 'email' )">
+                          *ngIf="invalidField('email')">
+                        {{ emailErrorMsg }}
+                    </span>  
+                    <!-- <span class="form-text text-danger"
+                          *ngIf="emailRequired()">
                         email is required
                      </span>
+                    <span class="form-text text-danger"
+                          *ngIf="emailFormat()">
+                        email format invalid
+                     </span>
+                    <span class="form-text text-danger"
+                          *ngIf="emailExist()">
+                        email already exist
+                     </span> -->
                 </div>
             </div>
 
@@ -42,7 +54,12 @@
                 <div class="col-sm-9">
                     <input type="text" 
                            class="form-control"
+                           formControlName="username"
                            placeholder="username">
+                <span class="form-text text-danger"
+                      *ngIf="invalidField( 'username' )">
+                    username is required
+                </span>
                 </div>
             </div>
 
@@ -53,7 +70,12 @@
                 <div class="col-sm-9">
                     <input type="password" 
                            class="form-control"
+                           formControlName="password"
                            placeholder="password">
+                    <span class="form-text text-danger"
+                          *ngIf="invalidField( 'password' )">
+                        password should be major 6 chars
+                    </span>        
                 </div>
             </div>
 
@@ -64,14 +86,20 @@
                 <div class="col-sm-9">
                     <input type="password" 
                            class="form-control"
+                           formControlName="validPassword"
                            placeholder="confirm password">
+                    <span class="form-text text-danger"
+                          *ngIf="invalidField( 'validPassword' )">
+                        password dont the same
+                    </span> 
                 </div>
             </div>
 
             <div class="row">
                 <div class="col">
                     <button class="btn btn-primary float-end"
-                            type="submit">
+                            type="submit"
+                            [disabled]="myForm.pending">
                         Register
                     </button>
                 </div>
@@ -81,11 +109,23 @@
 </div>
 
 
-<h2>Form valid</h2>
-<pre> {{ myForm.valid }} </pre>
+<h2>Form valid {{ myForm.valid }}</h2>
+<h2>Form status: {{ myForm.status }}</h2>
+<h2>Form pending: {{ myForm.pending }}</h2>
+<h2>Form errors </h2>
+<pre> {{ myForm.errors | json }} </pre>
 
 <h2>Name</h2>
 <pre> {{ myForm.controls['name']?.errors | json }} </pre>
 
 <h2>Email</h2>
 <pre> {{ myForm.controls['email']?.errors | json }} </pre>
+
+<h2>Username</h2>
+<pre> {{ myForm.controls['username']?.errors | json }} </pre>
+
+<h2>password</h2>
+<pre> {{ myForm.controls['password']?.errors | json }} </pre>
+
+<h2>validPassword</h2>
+<pre> {{ myForm.controls['validPassword']?.errors | json }} </pre>
